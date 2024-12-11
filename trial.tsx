@@ -1,14 +1,28 @@
+const gameScores = [10, 12, 14, 20]
+const favouriteThings = ["Raindrops on Roses", "whiskers on kittens", "canadian loud"]
+const voters = [{name: "Don", age: 23}, {name: "Lolo", age: 26}]
+
+function getLastItem<Type>(array: Type[]): Type | undefined {
+    return array[array.length - 1] 
+}
+console.log(getLastItem(gameScores))
+console.log(getLastItem(favouriteThings))
+console.log(getLastItem(voters))
+/*
 type UserRole =  "guest" | "member" | "Admin"
 
 type User = {
     name: string
     role: UserRole
+    id: number
 }
+type updatedUser = Partial<User>
+let nextUserId = 1
 
 const users: User[] = [
-    { name: "Don", role: "Admin" },
-    { name: "King", role: "member" },
-    { name: "John", role: "guest" },
+    {id: 1, name: "Don", role: "Admin" },
+    {id: 2, name: "King", role: "member" },
+    {id: 3, name: "John", role: "guest" },
 ]
 
 function fetchUserDetails(userName: string): User {
@@ -19,6 +33,30 @@ function fetchUserDetails(userName: string): User {
     return user
 }
 
+function updateUser(id: number, updates: any) {
+    //Find user in array by Id
+    const foundUser = users.find(user => user.id === id)
+    if(!foundUser) {
+        console.error("user not found")
+        return
+    }
+    Object.assign(foundUser, updates)
+}
+
+function addNewUser(newUser: Omit<User, "id">): User {
+    let user: User = {
+        id: nextUserId++,
+        ...newUser
+    }
+    users.push(user)
+    return(user)
+}
+
+//Exampple updates
+updateUser({userName: "Don", role: "guest  "});
+
+console.log(users)
+*/
 
 
 
